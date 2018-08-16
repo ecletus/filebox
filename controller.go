@@ -6,16 +6,17 @@ import (
 	"strings"
 	"time"
 
-	"github.com/qor/admin"
-	"github.com/qor/qor"
-	"github.com/qor/roles"
+	"github.com/aghape/admin"
+	"github.com/aghape/aghape"
+	"github.com/aghape/roles"
+	"github.com/aghape/common"
 )
 
 // Download is a handler will return a specific file
 func (filebox *Filebox) Download(w http.ResponseWriter, req *http.Request) {
 	var (
-		currentUser qor.CurrentUser
-		filePath    = strings.TrimPrefix(req.URL.Path, filebox.prefix)
+		currentUser common.User
+		filePath    = strings.TrimPrefix(req.URL.Path, filebox.Router.Prefix())
 		context     = &admin.Context{Context: &qor.Context{Request: req, Writer: w}}
 	)
 

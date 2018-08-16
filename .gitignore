@@ -1,2 +1,5 @@
 test/downloads/*.meta
 test/downloads/d.csv
+.*
+.~
+*.swp

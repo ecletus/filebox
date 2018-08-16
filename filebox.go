@@ -4,18 +4,19 @@ import (
 	"encoding/json"
 	"io"
 	"io/ioutil"
-	"net/http"
 	"os"
 	"path/filepath"
 	"strings"
 
-	"github.com/qor/admin"
-	"github.com/qor/roles"
+	"github.com/aghape/admin"
+	"github.com/aghape/roles"
+	"github.com/moisespsena/go-route"
 )
 
 // Filebox is a based object contains download folder path and admin.Auth used to get current user
 type Filebox struct {
 	BaseDir string
+	Router  *route.Mux
 	Auth    admin.Auth
 	prefix  string
 }
@@ -35,20 +36,11 @@ type Dir struct {
 	Filebox *Filebox
 }
 
-// ServeHTTP is a implement for http server interface
-func (filebox *Filebox) ServeHTTP(w http.ResponseWriter, req *http.Request) {
-	filebox.Download(w, req)
-}
-
 // New a filebox struct
 func New(dir string) *Filebox {
-	return &Filebox{BaseDir: dir}
-}
-
-// MountTo will mount to mux to route `mountto`
-func (filebox *Filebox) MountTo(mountTo string, mux *http.ServeMux) {
-	filebox.prefix = "/" + strings.Trim(mountTo, "/")
-	mux.Handle(filebox.prefix+"/", filebox)
+	f := &Filebox{BaseDir: dir, Router: route.NewMux("qor:filebox")}
+	f.Router.Handle("/", f.Download)
+	return f
 }
 
 // SetAuth will set a admin.Auth struct to Filebox, used to get current user's role

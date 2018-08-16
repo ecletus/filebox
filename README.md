@@ -14,7 +14,7 @@ Scenario 2:
 * You create a folder at `~/exchanges`
 * Only Admin user could access files in this folder
 
-[![GoDoc](https://godoc.org/github.com/qor/filebox?status.svg)](https://godoc.org/github.com/qor/filebox)
+[![GoDoc](https://godoc.org/github.com/aghape/filebox?status.svg)](https://godoc.org/github.com/aghape/filebox)
 
 ## Documentation
 
