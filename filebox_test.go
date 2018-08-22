@@ -14,7 +14,7 @@ import (
 	"github.com/fatih/color"
 	"github.com/aghape/admin"
 	"github.com/aghape/filebox"
-	"github.com/aghape/aghape"
+	"github.com/aghape/core"
 	"github.com/aghape/roles"
 )
 
@@ -45,7 +45,7 @@ func (AdminAuth) LogoutURL(c *admin.Context) string {
 	return "/auth/logout"
 }
 
-func (AdminAuth) GetCurrentUser(c *admin.Context) qor.CurrentUser {
+func (AdminAuth) GetCurrentUser(c *admin.Context) core.CurrentUser {
 	return CurrentUser
 }
 

@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/aghape/admin"
-	"github.com/aghape/aghape"
+	"github.com/aghape/core"
 	"github.com/aghape/roles"
 	"github.com/aghape/common"
 )
@@ -17,7 +17,7 @@ func (filebox *Filebox) Download(w http.ResponseWriter, req *http.Request) {
 	var (
 		currentUser common.User
 		filePath    = strings.TrimPrefix(req.URL.Path, filebox.Router.Prefix())
-		context     = &admin.Context{Context: &qor.Context{Request: req, Writer: w}}
+		context     = &admin.Context{Context: &core.Context{Request: req, Writer: w}}
 	)
 
 	if auth := filebox.Auth; auth != nil {
