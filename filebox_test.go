@@ -12,10 +12,10 @@ import (
 	"testing"
 
 	"github.com/fatih/color"
-	"github.com/aghape/admin"
-	"github.com/aghape/filebox"
-	"github.com/aghape/core"
-	"github.com/aghape/roles"
+	"github.com/ecletus/admin"
+	"github.com/ecletus/filebox"
+	"github.com/ecletus/core"
+	"github.com/ecletus/roles"
 )
 
 var Filebox *filebox.Filebox
