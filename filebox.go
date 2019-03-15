@@ -10,13 +10,13 @@ import (
 
 	"github.com/aghape/admin"
 	"github.com/aghape/roles"
-	"github.com/moisespsena/go-route"
+	"github.com/moisespsena-go/xroute"
 )
 
 // Filebox is a based object contains download folder path and admin.Auth used to get current user
 type Filebox struct {
 	BaseDir string
-	Router  *route.Mux
+	Router  *xroute.Mux
 	Auth    admin.Auth
 	prefix  string
 }
@@ -38,7 +38,7 @@ type Dir struct {
 
 // New a filebox struct
 func New(dir string) *Filebox {
-	f := &Filebox{BaseDir: dir, Router: route.NewMux("qor:filebox")}
+	f := &Filebox{BaseDir: dir, Router: xroute.NewMux("qor:filebox")}
 	f.Router.Handle("/", f.Download)
 	return f
 }
@@ -151,7 +151,7 @@ func hasPermission(metaFilePath string, mode roles.PermissionMode, currentRoles 
 			permission := &roles.Permission{}
 			if json.Unmarshal(bytes, permission); err == nil {
 				for _, role := range currentRoles {
-					if permission.HasPermission(mode, role) {
+					if ok, _ := permission.HasPermissionE(mode, role); ok {
 						return true
 					}
 				}
